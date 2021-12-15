@@ -14,10 +14,6 @@ public class Person {
         System.out.println("Im sit");
     }
 
-    void go() {
-        System.out.println("Im go");
-    }
-
     void run() {
         System.out.println("Im run");
     }
