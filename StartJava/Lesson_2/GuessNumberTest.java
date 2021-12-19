@@ -5,7 +5,7 @@ public class GuessNumberTest {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         boolean repeat = true;
-        String continueAnswer = "";
+        String continueAnswer = "yes";
 
         System.out.println("Введиите имя игрока 1");
         String playerOneName = input.nextLine();
@@ -15,19 +15,15 @@ public class GuessNumberTest {
         String playerTwoName = input.nextLine();
         Player playerTwo = new Player(playerTwoName);
 
-        GuessNumber guessNumber = new GuessNumber();
+        GuessNumber game = new GuessNumber(playerOne, playerTwo);
 
         do {
-            guessNumber.startGame(playerOne, playerTwo);
-
-            do {
-                System.out.println("Хотите продолжить игру? [yes/no]:");
-                continueAnswer = input.nextLine();
-            } while (!continueAnswer.equals("yes") && !continueAnswer.equals("no"));
-
-            if (continueAnswer.equals("no")) {
-                repeat = false;
+            if (continueAnswer.equals("yes")) {
+                game.start();
             }
-        } while (repeat);
+
+            System.out.println("Хотите продолжить игру? [yes/no]:");
+            continueAnswer = input.nextLine();
+        } while (!continueAnswer.equals("no"));
     }
 }
