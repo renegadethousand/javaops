@@ -19,8 +19,8 @@ public class CalculatorTest {
                 int secondNumber = input.nextInt();
 
                 int result = calculator.calculate(firstNumber, operation, secondNumber);
-                System.out.println("Результат: "+ result);
-             }
+                System.out.println("Результат: " + result);
+            }
             System.out.println("Хотите продолжить вычисления? [yes/no]:");
             answer = input.nextLine();
         } while (!answer.equals("no"));
