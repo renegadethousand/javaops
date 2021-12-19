@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 import java.util.Random;
 
 public class GuessNumber {
@@ -21,7 +21,7 @@ public class GuessNumber {
             int playerOneNumber = input.nextInt();
             playerOne.setNumber(playerOneNumber);
 
-            if (checkNumber(randomNumber, playerOneNumber)) {
+            if (checkNumber(randomNumber, playerOne)) {
                 break;
             }
 
@@ -35,11 +35,11 @@ public class GuessNumber {
         } while (true);
     }
 
-    private boolean checkNumber(int randomNumber, int inputNumber) {
-        if (inputNumber == randomNumber) {
-            System.out.println("Поздравляю, число угадано!");
+    private boolean checkNumber(int randomNumber, Player player) {
+        if (player.getNumber() == randomNumber) {
+            System.out.println("Поздравляю " + player.getName() + " число угадано!");
             return true;
-        } else if (inputNumber > randomNumber) {
+        } else if (player.getNumber() > randomNumber) {
             System.out.println("Данное число больше того, что загадал компьютер");
         } else {
             System.out.println("Данное число меньше того, что загадал компьютер");
