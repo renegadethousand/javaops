@@ -1,3 +1,5 @@
+package com.startjava.lesson_1.game;
+
 public class Variable {
     public static void main(String[] args) {     
         byte monitors = 1;

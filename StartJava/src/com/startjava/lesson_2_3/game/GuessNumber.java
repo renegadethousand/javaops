@@ -1,3 +1,5 @@
+package com.startjava.lesson_2_3.game;
+
 import java.util.Scanner;
 import java.util.Random;
 
@@ -29,7 +31,7 @@ public class GuessNumber {
             int playerTwoNumber = input.nextInt();
             playerTwo.setNumber(playerTwoNumber);
 
-            if (checkNumber(randomNumber, playerTwoNumber)) {
+            if (checkNumber(randomNumber, playerTwo)) {
                 break;
             }
         } while (true);
