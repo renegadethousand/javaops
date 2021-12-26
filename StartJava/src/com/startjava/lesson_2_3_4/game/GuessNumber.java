@@ -19,7 +19,6 @@ public class GuessNumber {
         System.out.println("Загадано число: " + randomNumber);
 
         do {
-
             boolean gameWin = false;
             boolean endGame = true;
 
