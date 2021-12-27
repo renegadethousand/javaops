@@ -7,14 +7,37 @@ import java.util.Random;
 public class GuessNumber {
 
     private Player[] players;
+    private int gamesCount;
 
     public GuessNumber(Player[] players) {
         this.players = players;
     }
 
+    public void shufflePlayers() {
+        Random random = new Random();
+        int firstPosition = random.nextInt(players.length);
+        System.out.println("Бросаем жребий...");
+
+        System.out.println("Первым ходит: " +  players[firstPosition].getName());
+
+        if (firstPosition > 0) {
+            Player switchedPlayer = players[0];
+            players[0] = players[firstPosition];
+            players[firstPosition] = switchedPlayer;
+        }
+
+        System.out.println("Порядок угадывания следующий:");
+        for (Player player: players) {
+            System.out.println(player.getName());
+        }
+    }
+
     public void start() {
         Random random = new Random();
         int randomNumber = random.nextInt(101);
+        gamesCount++;
+
+        shufflePlayers();
 
         System.out.println("Загадано число: " + randomNumber);
 
@@ -72,5 +95,45 @@ public class GuessNumber {
 
     private int checkNumber(int randomNumber, Player player) {
         return randomNumber == player.getLastNumber() ? 0 : player.getLastNumber() > randomNumber ? 1 : -1;
+    }
+
+    public void findWinner() {
+        int[] numbers = new int[players.length];
+        for (int i = 0; i < players.length; i++) {
+            numbers[i] = players[i].getWinsCount();
+        }
+
+        Arrays.sort(numbers);
+
+        int maxNumber = numbers[numbers.length-1];
+
+        if (maxNumber == 0 || numbers.length > 1 && maxNumber == numbers[numbers.length-2]) {
+            System.out.println("Победителя выявить неудалось");
+        } else {
+            for (Player player : players) {
+                if (maxNumber == player.getWinsCount()) {
+                    System.out.println("Победител игрок: " + player.getName());
+                }
+            }
+        }
+
+        System.out.println("Статистика");
+        for (Player player : players) {
+            System.out.println("Игрок: " + player.getName() + ", количество побед: " + player.getWinsCount());
+        }
+    }
+
+    public void fillPlayers() {
+        for (Player player : players) {
+            player.fill();
+        }
+    }
+
+    public int getGamesCount() {
+        return gamesCount;
+    }
+
+    public void setGamesCount(int gamesCount) {
+        this.gamesCount = gamesCount;
     }
 }

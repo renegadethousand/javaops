@@ -65,5 +65,6 @@ public class Player {
     public void fill() {
         Arrays.fill(numbers, choiceCount);
         setChoiceCount(0);
+        setWinsCount(0);
     }
 }
