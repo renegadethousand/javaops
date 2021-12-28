@@ -6,20 +6,12 @@ public class Player {
 
     private String name;
     private int[] numbers;
-    private int choiceCount;
-    private int winsCount;
+    private int countChoice;
+    private int countWins;
 
     public Player(String name, int choicesAmount) {
         this.name = name;
         this.numbers = new int[choicesAmount];
-    }
-
-    public int getWinsCount() {
-        return winsCount;
-    }
-
-    public void setWinsCount(int winsCount) {
-        this.winsCount = winsCount;
     }
 
     public String getName() {
@@ -27,44 +19,48 @@ public class Player {
     }
 
     public int[] getNumbers() {
-        return numbers;
+        return Arrays.copyOf(numbers, numbers.length);
     }
 
-    public void setNumbers(int[] numbers) {
-        this.numbers = numbers;
-    }
-
-    public void addNumber(int number) {
+    public boolean addNumber(int number) {
         if (number >= 0 && number <= 100) {
-            this.numbers[choiceCount] = number;
-            choiceCount++;
+            numbers[countChoice] = number;
+            countChoice++;
+            return true;
         } else {
-            System.out.println("Число должно входить в диапазон от 0 до 100!");
+            return false;
         }
+    }
+
+    public int getCountChoice() {
+        return countChoice;
+    }
+
+    public void setCountChoice(int choiceCount) {
+        this.countChoice = choiceCount;
+    }
+
+    public int getCountWins() {
+        return countWins;
+    }
+
+    public void setCountWins(int winsCount) {
+        this.countWins = winsCount;
     }
 
     public int getLastNumber() {
-        if (choiceCount == 0) {
+        if (countChoice == 0) {
             return 0;
         }
-        return numbers[choiceCount - 1];
+        return numbers[countChoice - 1];
     }
 
     public int getAvailableChoice() {
-        return numbers.length - choiceCount;
-    }
-
-    public int getChoiceCount() {
-        return choiceCount;
-    }
-
-    public void setChoiceCount(int choiceCount) {
-        this.choiceCount = choiceCount;
+        return numbers.length - countChoice;
     }
 
     public void fill() {
-        Arrays.fill(numbers, choiceCount);
-        setChoiceCount(0);
-        setWinsCount(0);
+        Arrays.fill(numbers, countChoice);
+        setCountChoice(0);
     }
 }

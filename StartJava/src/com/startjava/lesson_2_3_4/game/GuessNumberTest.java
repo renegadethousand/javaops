@@ -10,6 +10,23 @@ public class GuessNumberTest {
         int choicesAmount = 3;
         int maxGames = 3;
         int playersCount = 3;
+        Player[] players = initPlayers(playersCount, choicesAmount);
+
+        GuessNumber game = new GuessNumber(players, maxGames);
+        String answer = "yes";
+
+        do {
+            if (answer.equals("yes")) {
+                game.start();
+            }
+
+            System.out.println("Хотите продолжить игру? [yes/no]:");
+            answer = input.nextLine();
+        } while (!answer.equals("no"));
+    }
+
+    private static Player[] initPlayers(int playersCount, int choicesAmount) {
+        Scanner input = new Scanner(System.in);
         Player[] players = new Player[playersCount];
 
         for (int i = 0; i < players.length; i++) {
@@ -18,27 +35,6 @@ public class GuessNumberTest {
             Player player = new Player(playerName, choicesAmount);
             players[i] = player;
         }
-
-        System.out.println("У каждого игрока по " + choicesAmount + " попыток");
-
-        GuessNumber game = new GuessNumber(players);
-
-        String answer = "yes";
-
-        do {
-            if (answer.equals("yes")) {
-                game.fillPlayers();
-                game.start();
-            }
-
-            if (game.getGamesCount() == maxGames) {
-                game.findWinner();
-                System.out.println("Хотите продолжить игру? [yes/no]:");
-                answer = input.nextLine();
-                game.setGamesCount(0);
-            }
-
-        } while (!answer.equals("no"));
+        return players;
     }
-
 }

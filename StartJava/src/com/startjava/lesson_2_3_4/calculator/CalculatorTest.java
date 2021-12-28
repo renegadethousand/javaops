@@ -10,10 +10,7 @@ public class CalculatorTest {
         do {
             if (answer.equals("yes")) {
                 System.out.print("Введите математическое выражение: ");
-                String mathExpression = input.nextLine();
-
-                Calculator.calculate(mathExpression);
-
+                System.out.println("Результат " + Calculator.calculate(input.nextLine()));
             }
             System.out.println("Хотите продолжить вычисления? [yes/no]:");
             answer = input.nextLine();
