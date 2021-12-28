@@ -14,7 +14,7 @@ public class Calculator {
             return 0;
         }
 
-        int result = switch (operation) {
+        return switch (operation) {
             case '+' -> firstNumber + secondNumber;
             case '-' -> firstNumber - secondNumber;
             case '*' -> firstNumber * secondNumber;
@@ -23,7 +23,5 @@ public class Calculator {
             case '%' -> firstNumber % secondNumber;
             default -> 0;
         };
-
-        return result;
     }
 }
