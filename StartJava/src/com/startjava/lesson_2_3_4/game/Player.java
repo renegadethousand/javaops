@@ -19,7 +19,7 @@ public class Player {
     }
 
     public int[] getNumbers() {
-        return Arrays.copyOf(numbers, numbers.length);
+        return Arrays.copyOf(numbers, countChoice);
     }
 
     public boolean addNumber(int number) {
@@ -27,9 +27,8 @@ public class Player {
             numbers[countChoice] = number;
             countChoice++;
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     public int getCountChoice() {
@@ -48,11 +47,12 @@ public class Player {
         this.countWins = winsCount;
     }
 
+    public void incWin() {
+        countWins++;
+    }
+
     public int getLastNumber() {
-        if (countChoice == 0) {
-            return 0;
-        }
-        return numbers[countChoice - 1];
+        return countChoice == 0 ? 0 : numbers[countChoice - 1];
     }
 
     public int getAvailableChoice() {
@@ -60,7 +60,7 @@ public class Player {
     }
 
     public void fill() {
-        Arrays.fill(numbers, countChoice);
+        Arrays.fill(numbers, 0, countChoice == 0 ? 0 : countChoice - 1, 0);
         setCountChoice(0);
     }
 }

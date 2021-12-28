@@ -44,7 +44,7 @@ public class GuessNumber {
                 if (currentPlayer.getAvailableChoice() > 0) {
                     if (numberGuessed(randomNumber, currentPlayer)) {
                         System.out.println("Числа игрока " + currentPlayer.getName() + ": " + Arrays.toString(Arrays.copyOf(currentPlayer.getNumbers(), currentPlayer.getCountChoice())));
-                        currentPlayer.setCountWins(currentPlayer.getCountWins() + 1);
+                        currentPlayer.incWin();
                         gameWin = true;
                         break;
                     }
