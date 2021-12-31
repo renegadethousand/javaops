@@ -28,7 +28,7 @@ public class GuessNumber {
     }
 
     public void start() {
-        while (getGamesCount() < getMaxGames()) {
+        while (gamesCount < maxGames) {
             gamesCount++;
             newGame();
         }
@@ -90,14 +90,12 @@ public class GuessNumber {
 
         System.out.println("Первым ходит: " +  players[firstPosition].getName());
 
-        if (firstPosition > 0) {
-            Player switchedPlayer = players[0];
-            players[0] = players[firstPosition];
-            players[firstPosition] = switchedPlayer;
-            switchedPlayer = players[1];
-            players[1] = players[secondPosition];
-            players[secondPosition] = switchedPlayer;
-        }
+        Player switchedPlayer = players[0];
+        players[0] = players[firstPosition];
+        players[firstPosition] = switchedPlayer;
+        switchedPlayer = players[1];
+        players[1] = players[secondPosition];
+        players[secondPosition] = switchedPlayer;
 
         System.out.println("Порядок угадывания следующий:");
         for (Player player: players) {
@@ -112,7 +110,7 @@ public class GuessNumber {
         int playerNumber = input.nextInt();
         while (!player.addNumber(playerNumber)) {
             System.out.println("Число должно входить в диапазон от 0 до 100!");
-        };
+        }
 
         if (player.getLastNumber() == randomNumber) {
             System.out.println("Поздравляю " + player.getName() + " число угадано!");
